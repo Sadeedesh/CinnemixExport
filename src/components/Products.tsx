@@ -1,6 +1,21 @@
 import { ShoppingCart, Star } from 'lucide-react';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import { useState } from 'react';
+import InquirePage from './InquirePage';
 
 const Products = () => {
+  const { ref: sectionRef, isVisible: sectionVisible } = useScrollAnimation();
+  const { ref: gridRef, isVisible: gridVisible } = useScrollAnimation();
+  const [showInquiry, setShowInquiry] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState('');
+
+  const handleInquireClick = (productName: string) => {
+    console.log('Inquiry clicked for:', productName);
+    setSelectedProduct(productName);
+    setShowInquiry(true);
+    console.log('showInquiry set to:', true);
+  };
+
   const products = [
     {
       name: 'Ceylon Cinnamon Sticks',
@@ -47,9 +62,9 @@ const Products = () => {
   ];
 
   return (
-    <section id="products" className="py-20 bg-white">
+    <section ref={sectionRef as any} id="products" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <div className={`text-center mb-16 scroll-animate ${sectionVisible ? 'visible' : ''}`}>
           <h2 className="text-4xl md:text-5xl font-bold text-amber-900 mb-4">Our Premium Products</h2>
           <div className="w-24 h-1 bg-amber-600 mx-auto mb-6"></div>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
@@ -58,11 +73,11 @@ const Products = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div ref={gridRef as any} className={`grid md:grid-cols-2 lg:grid-cols-3 gap-8 scroll-animate ${gridVisible ? 'visible' : ''}`}>
           {products.map((product, index) => (
             <div
               key={index}
-              className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2"
+              className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2 hover:scale-105 cursor-pointer"
             >
               {product.popular && (
                 <div className="absolute top-4 right-4 z-10 bg-amber-600 text-white px-4 py-1 rounded-full text-sm font-semibold">
@@ -89,7 +104,10 @@ const Products = () => {
                 <h3 className="text-xl font-bold text-gray-900 mb-3">{product.name}</h3>
                 <p className="text-gray-600 mb-6 leading-relaxed">{product.description}</p>
 
-                <button className="w-full bg-amber-600 hover:bg-amber-700 text-white font-semibold py-3 rounded-lg transition-colors duration-300 flex items-center justify-center group">
+                <button 
+                  onClick={() => handleInquireClick(product.name)}
+                  className="w-full bg-amber-600 hover:bg-amber-700 text-white font-semibold py-3 rounded-lg transition-colors duration-300 flex items-center justify-center group"
+                >
                   <ShoppingCart className="mr-2 group-hover:scale-110 transition-transform" size={20} />
                   Inquire Now
                 </button>
@@ -98,6 +116,13 @@ const Products = () => {
           ))}
         </div>
       </div>
+      
+      {showInquiry && (
+        <InquirePage 
+          onClose={() => setShowInquiry(false)}
+          productName={selectedProduct}
+        />
+      )}
     </section>
   );
 };

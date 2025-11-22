@@ -1,6 +1,12 @@
 import { Award, Globe, Leaf, Heart } from 'lucide-react';
 import CINNAMIX from "../assets/CINNAMIX.png";
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 const About = () => {
+  const { ref: sectionRef, isVisible: sectionVisible } = useScrollAnimation();
+  const { ref: storyRef, isVisible: storyVisible } = useScrollAnimation();
+  const { ref: imageRef, isVisible: imageVisible } = useScrollAnimation();
+  const { ref: valuesRef, isVisible: valuesVisible } = useScrollAnimation();
+
   const values = [
     {
       icon: Award,
@@ -25,9 +31,9 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="py-20 bg-linear-to-b from-amber-50 to-white">
+    <section ref={sectionRef as any} id="about" className="py-20 bg-linear-to-b from-amber-50 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <div className={`text-center mb-16 scroll-animate ${sectionVisible ? 'visible' : ''}`}>
           <h2 className="text-4xl md:text-5xl font-bold text-amber-900 mb-4">About Cinnamix Export</h2>
           <div className="w-24 h-1 bg-amber-600 mx-auto mb-6"></div>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
@@ -37,7 +43,7 @@ const About = () => {
         </div>
 
         <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
-          <div className="space-y-6">
+          <div ref={storyRef as any} className={`space-y-6 scroll-animate-left ${storyVisible ? 'visible' : ''}`}>
             <h3 className="text-3xl font-bold text-amber-900">Our Story</h3>
             <p className="text-gray-700 leading-relaxed">
               Founded in 2025, Cinnomen Export began as a small family business with a passion for sharing
@@ -57,8 +63,8 @@ const About = () => {
             </p>
           </div>
 
-          <div className="relative">
-            <div className="aspect-square rounded-2xl overflow-hidden shadow-2xl transform hover:scale-105 transition-transform duration-500">
+          <div ref={imageRef as any} className={`relative scroll-animate-right ${imageVisible ? 'visible' : ''}`}>
+            <div className="aspect-square rounded-2xl overflow-hidden shadow-2xl transform hover:scale-110 hover:rotate-1 transition-all duration-500 cursor-pointer">
               <img
                 src={CINNAMIX}
                 alt="Cinnamon plantation"
@@ -69,13 +75,13 @@ const About = () => {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div ref={valuesRef as any} className={`grid md:grid-cols-2 lg:grid-cols-4 gap-8 scroll-animate ${valuesVisible ? 'visible' : ''}`}>
           {values.map((value, index) => {
             const Icon = value.icon;
             return (
               <div
                 key={index}
-                className="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-t-4 border-amber-600"
+                className="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl card-hover border-t-4 border-amber-600 cursor-pointer"
               >
                 <div className="bg-amber-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
                   <Icon className="text-amber-700" size={32} />

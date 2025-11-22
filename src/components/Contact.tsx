@@ -1,8 +1,14 @@
 import { useState } from 'react';
 import { Mail, Phone, MapPin, Send, Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
 import emailjs from '@emailjs/browser';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 const Contact = () => {
+  const { ref: sectionRef, isVisible: sectionVisible } = useScrollAnimation();
+  const { ref: formRef, isVisible: formVisible } = useScrollAnimation();
+  const { ref: infoRef, isVisible: infoVisible } = useScrollAnimation();
+  const { ref: mapRef, isVisible: mapVisible } = useScrollAnimation();
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -47,9 +53,9 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-20 bg-amber-50">
+    <section ref={sectionRef as any} id="contact" className="py-20 bg-amber-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <div className={`text-center mb-16 scroll-animate ${sectionVisible ? 'visible' : ''}`}>
           <h2 className="text-4xl md:text-5xl font-bold text-amber-900 mb-4">Get In Touch</h2>
           <div className="w-24 h-1 bg-amber-600 mx-auto mb-6"></div>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
@@ -58,7 +64,7 @@ const Contact = () => {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12">
-          <div>
+          <div ref={formRef as any} className={`scroll-animate-left ${formVisible ? 'visible' : ''}`}>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label htmlFor="name" className="block text-gray-700 font-semibold mb-2">
@@ -131,7 +137,7 @@ const Contact = () => {
             </form>
           </div>
 
-          <div className="space-y-8">
+          <div ref={infoRef as any} className={`space-y-8 scroll-animate-right ${infoVisible ? 'visible' : ''}`}>
             <div>
               <h3 className="text-2xl font-bold text-amber-900 mb-6">Contact Information</h3>
 
@@ -173,7 +179,7 @@ const Contact = () => {
               </div>
             </div>
 
-            <div className="bg-white p-8 rounded-2xl shadow-lg">
+            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 cursor-pointer">
               <h4 className="text-xl font-bold text-amber-900 mb-4">Business Hours</h4>
               <div className="space-y-2 text-gray-700">
                 <div className="flex justify-between">
@@ -217,7 +223,7 @@ const Contact = () => {
           </div>
         </div>
 
-        <div className="mt-16 rounded-2xl overflow-hidden shadow-2xl h-96">
+        <div ref={mapRef as any} className={`mt-16 rounded-2xl overflow-hidden shadow-2xl h-96 scroll-animate ${mapVisible ? 'visible' : ''}`}>
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126738.56347862248!2d79.77380033359375!3d6.927078699999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae253d10f7a7003%3A0x320b2e4d32d3838d!2sColombo%2C%20Sri%20Lanka!5e0!3m2!1sen!2s!4v1234567890123!5m2!1sen!2s"
             width="100%"

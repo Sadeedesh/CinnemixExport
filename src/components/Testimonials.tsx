@@ -1,8 +1,11 @@
 import { useState } from 'react';
 import { Quote, ChevronLeft, ChevronRight, Star } from 'lucide-react';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 const Testimonials = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const { ref: sectionRef, isVisible: sectionVisible } = useScrollAnimation();
+  const { ref: cardRef, isVisible: cardVisible } = useScrollAnimation();
 
   const testimonials = [
     {
@@ -48,9 +51,9 @@ const Testimonials = () => {
   };
 
   return (
-    <section id="testimonials" className="py-20 bg-amber-50">
+    <section ref={sectionRef as any} id="testimonials" className="py-20 bg-amber-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <div className={`text-center mb-16 scroll-animate ${sectionVisible ? 'visible' : ''}`}>
           <h2 className="text-4xl md:text-5xl font-bold text-amber-900 mb-4">What Our Partners Say</h2>
           <div className="w-24 h-1 bg-amber-600 mx-auto mb-6"></div>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
@@ -58,8 +61,8 @@ const Testimonials = () => {
           </p>
         </div>
 
-        <div className="relative max-w-4xl mx-auto">
-          <div className="bg-white rounded-2xl shadow-2xl p-8 md:p-12 relative overflow-hidden">
+        <div ref={cardRef as any} className={`relative max-w-4xl mx-auto scroll-animate ${cardVisible ? 'visible' : ''}`}>
+          <div className="bg-white rounded-2xl shadow-2xl p-8 md:p-12 relative overflow-hidden hover:shadow-3xl transition-all duration-300 transform hover:scale-105 cursor-pointer">
             <Quote className="absolute top-8 left-8 text-amber-200 opacity-50" size={64} />
             <Quote className="absolute bottom-8 right-8 text-amber-200 opacity-50 transform rotate-180" size={64} />
 
@@ -68,7 +71,7 @@ const Testimonials = () => {
                 <img
                   src={testimonials[activeIndex].image}
                   alt={testimonials[activeIndex].name}
-                  className="w-24 h-24 rounded-full object-cover shadow-lg ring-4 ring-amber-200"
+                  className="w-24 h-24 rounded-full object-cover shadow-lg ring-4 ring-amber-200 hover:ring-amber-300 transition-all duration-300 transform hover:scale-110 cursor-pointer"
                 />
 
                 <div className="text-center md:text-left">

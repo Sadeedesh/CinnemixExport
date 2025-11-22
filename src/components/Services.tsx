@@ -1,6 +1,11 @@
 import { Package, Ship, Shield, Clock, FileCheck, Truck } from 'lucide-react';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 const Services = () => {
+  const { ref: sectionRef, isVisible: sectionVisible } = useScrollAnimation();
+  const { ref: gridRef, isVisible: gridVisible } = useScrollAnimation();
+  const { ref: ctaRef, isVisible: ctaVisible } = useScrollAnimation();
+
   const services = [
     {
       icon: Package,
@@ -41,9 +46,9 @@ const Services = () => {
   ];
 
   return (
-    <section id="services" className="py-20 bg-amber-50">
+    <section ref={sectionRef as any} id="services" className="py-20 bg-amber-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <div className={`text-center mb-16 scroll-animate ${sectionVisible ? 'visible' : ''}`}>
           <h2 className="text-4xl md:text-5xl font-bold text-amber-900 mb-4">Our Export Services</h2>
           <div className="w-24 h-1 bg-amber-600 mx-auto mb-6"></div>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
@@ -51,13 +56,13 @@ const Services = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div ref={gridRef as any} className={`grid md:grid-cols-2 lg:grid-cols-3 gap-8 scroll-animate ${gridVisible ? 'visible' : ''}`}>
           {services.map((service, index) => {
             const Icon = service.icon;
             return (
               <div
                 key={index}
-                className="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden"
+                className="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 overflow-hidden cursor-pointer"
               >
                 <div className={`absolute top-0 left-0 w-2 h-full bg-linear-to-b ${service.gradient} transform scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-top`}></div>
 
@@ -79,7 +84,7 @@ const Services = () => {
           })}
         </div>
 
-        <div className="mt-16 bg-linear-to-r from-amber-700 to-amber-900 rounded-2xl p-12 text-center text-white">
+        <div ref={ctaRef as any} className={`mt-16 bg-linear-to-r from-amber-700 to-amber-900 rounded-2xl p-12 text-center text-white scroll-animate ${ctaVisible ? 'visible' : ''}`}>
           <h3 className="text-3xl font-bold mb-4">Ready to Start Your Export Journey?</h3>
           <p className="text-xl mb-8 text-amber-100">
             Our team of export specialists is here to help you navigate every step of the process.

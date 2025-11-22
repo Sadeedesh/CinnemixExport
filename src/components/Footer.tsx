@@ -1,6 +1,9 @@
 import { Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram, ArrowUp } from 'lucide-react';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 const Footer = () => {
+  const { ref: footerRef, isVisible: footerVisible } = useScrollAnimation();
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -13,9 +16,9 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-amber-900 text-white pt-16 pb-8">
+    <footer ref={footerRef as any} className="bg-amber-900 text-white pt-16 pb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+        <div className={`grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12 scroll-animate ${footerVisible ? 'visible' : ''}`}>
           <div>
             <h3 className="text-2xl font-bold mb-4">Cinnamix Export</h3>
             <p className="text-amber-200 mb-6 leading-relaxed">
