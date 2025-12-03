@@ -1,8 +1,31 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['home', 'about', 'products', 'services', 'testimonials', 'contact'];
+      const scrollPosition = window.scrollY + 100;
+
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const { offsetTop, offsetHeight } = element;
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -34,7 +57,11 @@ const Navbar = () => {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="text-gray-700 hover:text-amber-700 transition-colors duration-300 font-medium"
+                className={`transition-colors duration-300 font-medium ${
+                  activeSection === item.id 
+                    ? 'text-amber-700 border-b-2 border-amber-700 pb-1' 
+                    : 'text-gray-700 hover:text-amber-700'
+                }`}
               >
                 {item.label}
               </button>
@@ -57,7 +84,11 @@ const Navbar = () => {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="block w-full text-left px-3 py-2 text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition-colors duration-300 rounded-md"
+                className={`block w-full text-left px-3 py-2 transition-colors duration-300 rounded-md ${
+                  activeSection === item.id
+                    ? 'bg-amber-100 text-amber-700 border-l-4 border-amber-700'
+                    : 'text-gray-700 hover:bg-amber-50 hover:text-amber-700'
+                }`}
               >
                 {item.label}
               </button>
