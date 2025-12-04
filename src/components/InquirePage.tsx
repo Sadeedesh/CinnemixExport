@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { ArrowLeft, Send, Package, User, Mail, Phone, MessageSquare } from 'lucide-react';
-import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 interface InquirePageProps {
   onClose: () => void;
@@ -8,8 +7,7 @@ interface InquirePageProps {
 }
 
 const InquirePage = ({ onClose, productName }: InquirePageProps) => {
-  const { ref: formRef, isVisible: formVisible } = useScrollAnimation();
-  const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation();
+  // Removed scroll animations for better visibility
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -56,27 +54,27 @@ const InquirePage = ({ onClose, productName }: InquirePageProps) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-black/50 z-[9999] flex items-center justify-center p-4" style={{zIndex: 9999}}>
-      <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-        <div ref={headerRef as any} className={`bg-gradient-to-r from-amber-600 to-orange-600 p-6 rounded-t-2xl scroll-animate ${headerVisible ? 'visible' : ''}`}>
+    <div className="fixed inset-0 bg-black/50 z-[9999] flex items-center justify-center p-2 sm:p-4" style={{zIndex: 9999}}>
+      <div className="bg-white rounded-xl sm:rounded-2xl max-w-2xl w-full max-h-[95vh] sm:max-h-[90vh] overflow-y-auto">
+        <div className="bg-gradient-to-r from-amber-600 to-orange-600 p-4 sm:p-6 rounded-t-xl sm:rounded-t-2xl">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <Package className="text-white" size={24} />
-              <h2 className="text-2xl font-bold text-white">Product Inquiry</h2>
+            <div className="flex items-center gap-2 sm:gap-3">
+              <Package className="text-white" size={20} />
+              <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-white">Product Inquiry</h2>
             </div>
             <button
               onClick={onClose}
-              className="text-white hover:bg-white/20 p-2 rounded-full transition-all duration-300"
+              className="text-white hover:bg-white/20 p-1.5 sm:p-2 rounded-full transition-all duration-300"
             >
-              <ArrowLeft size={24} />
+              <ArrowLeft size={20} />
             </button>
           </div>
         </div>
 
-        <div ref={formRef as any} className={`p-8 scroll-animate ${formVisible ? 'visible' : ''}`}>
-          <div className="mb-6 p-4 bg-amber-50 rounded-lg border-l-4 border-amber-600">
-            <h3 className="text-lg font-semibold text-amber-900 mb-2">Why Choose Cinnamix Export?</h3>
-            <ul className="text-sm text-amber-800 space-y-1">
+        <div className="p-3 sm:p-4 lg:p-6">
+          <div className="mb-4 sm:mb-6 p-3 sm:p-4 bg-amber-50 rounded-lg border-l-4 border-amber-600">
+            <h3 className="text-base sm:text-lg font-semibold text-amber-900 mb-2">Why Choose Cinnamix Export?</h3>
+            <ul className="text-xs sm:text-sm text-amber-800 space-y-1">
               <li>• Authentic Ceylon cinnamon with international certifications</li>
               <li>• Competitive wholesale pricing for bulk orders</li>
               <li>• Fast global shipping with secure packaging</li>
@@ -84,11 +82,11 @@ const InquirePage = ({ onClose, productName }: InquirePageProps) => {
             </ul>
           </div>
           
-          <form onSubmit={handleSubmit} className="space-y-6 scroll-animate-left">
-            <div className="grid md:grid-cols-2 gap-6">
+          <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4 lg:space-y-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 lg:gap-6">
               <div>
-                <label className="flex items-center gap-2 text-black font-semibold mb-2">
-                  <User size={16} />
+                <label className="flex items-center gap-1 sm:gap-2 text-black font-semibold mb-1 sm:mb-2 text-sm sm:text-base">
+                  <User size={14} />
                   Full Name *
                 </label>
                 <input
@@ -97,14 +95,14 @@ const InquirePage = ({ onClose, productName }: InquirePageProps) => {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-amber-600 focus:ring-2 focus:ring-amber-200 transition-all duration-300 outline-none"
+                  className="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg border border-gray-300 focus:border-amber-600 focus:ring-2 focus:ring-amber-200 transition-all duration-300 outline-none text-sm sm:text-base"
                   placeholder="John Doe"
                 />
               </div>
 
               <div>
-                <label className="flex items-center gap-2 text-black font-semibold mb-2">
-                  <Mail size={16} />
+                <label className="flex items-center gap-1 sm:gap-2 text-black font-semibold mb-1 sm:mb-2 text-sm sm:text-base">
+                  <Mail size={14} />
                   Email Address *
                 </label>
                 <input
@@ -113,16 +111,16 @@ const InquirePage = ({ onClose, productName }: InquirePageProps) => {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-amber-600 focus:ring-2 focus:ring-amber-200 transition-all duration-300 outline-none"
+                  className="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg border border-gray-300 focus:border-amber-600 focus:ring-2 focus:ring-amber-200 transition-all duration-300 outline-none text-sm sm:text-base"
                   placeholder="john@company.com"
                 />
               </div>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 lg:gap-6">
               <div>
-                <label className="flex items-center gap-2 text-black font-semibold mb-2">
-                  <Phone size={16} />
+                <label className="flex items-center gap-1 sm:gap-2 text-black font-semibold mb-1 sm:mb-2 text-sm sm:text-base">
+                  <Phone size={14} />
                   Phone Number
                 </label>
                 <input
@@ -130,13 +128,13 @@ const InquirePage = ({ onClose, productName }: InquirePageProps) => {
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-amber-600 focus:ring-2 focus:ring-amber-200 transition-all duration-300 outline-none"
+                  className="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg border border-gray-300 focus:border-amber-600 focus:ring-2 focus:ring-amber-200 transition-all duration-300 outline-none text-sm sm:text-base"
                   placeholder="+1 (555) 123-4567"
                 />
               </div>
 
               <div>
-                <label className="text-black font-semibold mb-2 block">
+                <label className="text-black font-semibold mb-1 sm:mb-2 block text-sm sm:text-base">
                   Company Name
                 </label>
                 <input
@@ -144,7 +142,7 @@ const InquirePage = ({ onClose, productName }: InquirePageProps) => {
                   name="company"
                   value={formData.company}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-amber-600 focus:ring-2 focus:ring-amber-200 transition-all duration-300 outline-none"
+                  className="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg border border-gray-300 focus:border-amber-600 focus:ring-2 focus:ring-amber-200 transition-all duration-300 outline-none text-sm sm:text-base"
                   placeholder="Your Company"
                 />
               </div>

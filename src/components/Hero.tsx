@@ -14,14 +14,15 @@ const Hero = () => {
 
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
-      <div className="absolute inset-0 bg-gradient-to-br from-amber-900 via-orange-900 to-red-900">
-        <div className="absolute inset-0 opacity-30" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D2691E' fill-opacity='0.4'%3E%3Cpath d='M30 30l15-8.66v17.32L30 30zm0 0L15 21.34v17.32L30 30z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          backgroundSize: '60px 60px'
-        }}></div>
-        <div className="absolute top-1/4 right-1/3 w-6 h-6 bg-amber-400/30 transform rotate-45 animate-spin" style={{animationDuration: '20s'}}></div>
-        <div className="absolute bottom-1/3 left-1/5 w-4 h-4 bg-orange-300/40 rounded-full animate-pulse"></div>
-        <div className="absolute inset-0 bg-black/50"></div>
+      <div className="absolute inset-0">
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url('https://media.istockphoto.com/id/1024024678/photo/cinnamon-sticks-and-powder-in-spoon-on-a-old-copper-table.jpg?s=1024x1024&w=is&k=20&c=WRHlBOh3rGsWRiskQg9UDeITHEXQ5W53Up_5ITCIfgg=')`
+          }}
+        ></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-amber-900/80 via-orange-900/70 to-red-900/80"></div>
+        <div className="absolute inset-0 bg-black/40"></div>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex items-center py-8 sm:py-12 lg:py-20">
