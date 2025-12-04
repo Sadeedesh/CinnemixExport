@@ -17,7 +17,11 @@ const InquirePage = ({ onClose, productName }: InquirePageProps) => {
     company: '',
     product: productName || '',
     quantity: '',
-    message: ''
+    message: '',
+    budget: '',
+    deliveryDate: '',
+    destination: '',
+    businessType: ''
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -42,7 +46,11 @@ const InquirePage = ({ onClose, productName }: InquirePageProps) => {
       company: '',
       product: '',
       quantity: '',
-      message: ''
+      message: '',
+      budget: '',
+      deliveryDate: '',
+      destination: '',
+      businessType: ''
     });
     onClose();
   };
