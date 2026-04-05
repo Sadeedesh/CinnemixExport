@@ -53,13 +53,14 @@ const Contact = () => {
   };
 
   return (
-    <section ref={sectionRef as any} id="contact" className="py-20 bg-amber-50">
+    <section ref={sectionRef as any} id="contact" className="py-16 sm:py-20 lg:py-28 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className={`text-center mb-16 scroll-animate ${sectionVisible ? 'visible' : ''}`}>
-          <h2 className="text-4xl md:text-5xl font-bold text-amber-900 mb-4">Get In Touch</h2>
-          <div className="w-24 h-1 bg-amber-600 mx-auto mb-6"></div>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Have questions about our products or services? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+        <div className={`text-center mb-14 lg:mb-20 scroll-animate ${sectionVisible ? 'visible' : ''}`}>
+          <span className="inline-block text-xs font-bold tracking-widest text-amber-600 uppercase mb-3">Contact Us</span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4">Get In <span className="text-amber-600">Touch</span></h2>
+          <div className="w-12 h-1 bg-amber-500 mx-auto rounded-full mb-5" />
+          <p className="text-base sm:text-lg text-gray-500 max-w-2xl mx-auto">
+            Have questions about our products or services? We'd love to hear from you.
           </p>
         </div>
 
@@ -77,7 +78,7 @@ const Contact = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-amber-600 focus:ring-2 focus:ring-amber-200 transition-all duration-300 outline-none"
+                  className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-amber-500 focus:ring-2 focus:ring-amber-100 transition-all duration-300 outline-none text-sm"
                   placeholder="John Doe"
                 />
               </div>
@@ -93,7 +94,7 @@ const Contact = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-amber-600 focus:ring-2 focus:ring-amber-200 transition-all duration-300 outline-none"
+                  className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-amber-500 focus:ring-2 focus:ring-amber-100 transition-all duration-300 outline-none text-sm"
                   placeholder="john@example.com"
                 />
               </div>
@@ -109,7 +110,7 @@ const Contact = () => {
                   onChange={handleChange}
                   required
                   rows={6}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-amber-600 focus:ring-2 focus:ring-amber-200 transition-all duration-300 outline-none resize-none"
+                  className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-amber-500 focus:ring-2 focus:ring-amber-100 transition-all duration-300 outline-none resize-none text-sm"
                   placeholder="Tell us about your requirements..."
                 />
               </div>
@@ -117,7 +118,7 @@ const Contact = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-amber-600 hover:bg-amber-700 text-white font-semibold py-4 rounded-lg transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center"
+                className="w-full bg-amber-600 hover:bg-amber-700 text-white font-semibold py-3.5 rounded-xl transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-sm"
               >
                 {isSubmitting ? (
                   'Sending...'
@@ -130,7 +131,7 @@ const Contact = () => {
               </button>
 
               {submitMessage && (
-                <div className="bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded-lg">
+                <div className="bg-amber-50 border border-amber-100 text-amber-800 px-4 py-3 rounded-xl text-sm">
                   {submitMessage}
                 </div>
               )}
@@ -139,16 +140,16 @@ const Contact = () => {
 
           <div ref={infoRef as any} className={`space-y-8 scroll-animate-right ${infoVisible ? 'visible' : ''}`}>
             <div>
-              <h3 className="text-2xl font-bold text-amber-900 mb-6">Contact Information</h3>
+              <h3 className="text-xl font-extrabold text-gray-900 mb-6">Contact Information</h3>
 
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
-                  <div className="bg-amber-100 p-3 rounded-lg">
-                    <MapPin className="text-amber-700" size={24} />
+                  <div className="bg-amber-50 p-3 rounded-xl">
+                    <MapPin className="text-amber-600" size={20} />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-900 mb-1">Our Location</h4>
-                    <p className="text-gray-600">
+                    <h4 className="font-semibold text-gray-900 mb-1 text-sm">Our Location</h4>
+                    <p className="text-gray-500 text-sm">
                       Neraluwa,Akuressa,Matara<br />
                       Sri Lanka
                     </p>
@@ -156,32 +157,32 @@ const Contact = () => {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="bg-amber-100 p-3 rounded-lg">
-                    <Phone className="text-amber-700" size={24} />
+                  <div className="bg-amber-50 p-3 rounded-xl">
+                    <Phone className="text-amber-600" size={20} />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-900 mb-1">Phone</h4>
+                    <h4 className="font-semibold text-gray-900 mb-1 text-sm">Phone</h4>
                     
-                    <p className="text-gray-600">+94 77 08 31 741</p>
+                    <p className="text-gray-500 text-sm">+94 77 08 31 741</p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="bg-amber-100 p-3 rounded-lg">
-                    <Mail className="text-amber-700" size={24} />
+                  <div className="bg-amber-50 p-3 rounded-xl">
+                    <Mail className="text-amber-600" size={20} />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-900 mb-1">Email</h4>
-                    <p className="text-gray-600">cinnamixexport@gmail.com</p>
+                    <h4 className="font-semibold text-gray-900 mb-1 text-sm">Email</h4>
+                    <p className="text-gray-500 text-sm">cinnamixexport@gmail.com</p>
                    
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 cursor-pointer">
-              <h4 className="text-xl font-bold text-amber-900 mb-4">Business Hours</h4>
-              <div className="space-y-2 text-gray-700">
+            <div className="bg-gray-50 border border-gray-100 p-6 rounded-2xl">
+              <h4 className="text-base font-extrabold text-gray-900 mb-4">Business Hours</h4>
+              <div className="space-y-2 text-gray-500 text-sm">
                 <div className="flex justify-between">
                   <span>Monday - Friday:</span>
                   <span className="font-semibold">9:00 AM - 6:00 PM</span>
@@ -198,8 +199,8 @@ const Contact = () => {
             </div>
 
             <div>
-              <h4 className="text-xl font-bold text-amber-900 mb-4">Follow Us</h4>
-              <div className="flex gap-4">
+              <h4 className="text-base font-extrabold text-gray-900 mb-4">Follow Us</h4>
+              <div className="flex gap-3">
                 {[
                   { icon: Facebook, href: '#' },
                   { icon: Twitter, href: '#' },
@@ -211,10 +212,10 @@ const Contact = () => {
                     <a
                       key={index}
                       href={social.href}
-                      className="bg-amber-600 hover:bg-amber-700 text-white p-3 rounded-lg transition-all duration-300 transform hover:scale-110"
+                      className="w-9 h-9 bg-gray-100 hover:bg-amber-600 hover:text-white text-gray-600 rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-110"
                       aria-label="Social media link"
                     >
-                      <Icon size={24} />
+                      <Icon size={16} />
                     </a>
                   );
                 })}

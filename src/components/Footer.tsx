@@ -1,142 +1,103 @@
-import { Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram, ArrowUp } from 'lucide-react';
-import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import { Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram, ArrowUp, Sparkles } from 'lucide-react';
 
 const Footer = () => {
-  const { ref: footerRef, isVisible: footerVisible } = useScrollAnimation();
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+  const scrollToSection = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
 
   return (
-    <footer ref={footerRef as any} className="bg-amber-900 text-white pt-16 pb-8">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className={`grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12 scroll-animate ${footerVisible ? 'visible' : ''}`}>
+    <footer className="bg-gray-900 text-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+
+          {/* Brand */}
           <div>
-            <h3 className="text-2xl font-bold mb-4">Cinnamix Export</h3>
-            <p className="text-amber-200 mb-6 leading-relaxed">
-              Your trusted partner in premium Ceylon cinnamix exports. Delivering quality and authenticity worldwide since 2025.
+            <div className="flex items-center gap-2 mb-4">
+              <div className="w-8 h-8 rounded-lg bg-amber-600 flex items-center justify-center">
+                <Sparkles size={16} className="text-white" />
+              </div>
+              <span className="text-lg font-extrabold">Cinnamix <span className="text-amber-500">Export</span></span>
+            </div>
+            <p className="text-gray-400 text-sm leading-relaxed mb-5">
+              Your trusted partner in premium Ceylon cinnamon exports. Delivering quality and authenticity worldwide since 2025.
             </p>
-            <div className="flex gap-3">
-              {[
-                { icon: Facebook, href: '#' },
-                { icon: Twitter, href: '#' },
-                { icon: Linkedin, href: '#' },
-                { icon: Instagram, href: '#' },
-              ].map((social, index) => {
-                const Icon = social.icon;
-                return (
-                  <a
-                    key={index}
-                    href={social.href}
-                    className="bg-amber-800 hover:bg-amber-700 p-2 rounded-lg transition-all duration-300 transform hover:scale-110"
-                    aria-label="Social media link"
-                  >
-                    <Icon size={20} />
-                  </a>
-                );
-              })}
+            <div className="flex gap-2">
+              {[Facebook, Twitter, Linkedin, Instagram].map((Icon, i) => (
+                <a key={i} href="#" className="w-9 h-9 rounded-lg bg-gray-800 hover:bg-amber-600 flex items-center justify-center transition-all duration-200 hover:scale-110" aria-label="Social">
+                  <Icon size={16} />
+                </a>
+              ))}
             </div>
           </div>
 
+          {/* Quick links */}
           <div>
-            <h4 className="text-lg font-bold mb-4">Quick Links</h4>
-            <ul className="space-y-3">
-              {[
-                { label: 'Home', id: 'home' },
-                { label: 'About Us', id: 'about' },
-                { label: 'Products', id: 'products' },
-                { label: 'Services', id: 'services' },
-                { label: 'Testimonials', id: 'testimonials' },
-                { label: 'Contact', id: 'contact' },
-              ].map((link) => (
-                <li key={link.id}>
-                  <button
-                    onClick={() => scrollToSection(link.id)}
-                    className="text-amber-200 hover:text-white transition-colors duration-300 hover:translate-x-1 inline-block"
-                  >
-                    {link.label}
+            <h4 className="text-sm font-bold uppercase tracking-widest text-gray-300 mb-4">Quick Links</h4>
+            <ul className="space-y-2.5">
+              {[['Home','home'],['About Us','about'],['Products','products'],['Services','services'],['Testimonials','testimonials'],['Contact','contact']].map(([label, id]) => (
+                <li key={id}>
+                  <button onClick={() => scrollToSection(id)} className="text-gray-400 hover:text-amber-400 text-sm transition-colors duration-200 hover:translate-x-1 inline-block">
+                    {label}
                   </button>
                 </li>
               ))}
             </ul>
           </div>
 
+          {/* Contact */}
           <div>
-            <h4 className="text-lg font-bold mb-4">Contact Info</h4>
-            <ul className="space-y-4">
+            <h4 className="text-sm font-bold uppercase tracking-widest text-gray-300 mb-4">Contact Info</h4>
+            <ul className="space-y-3.5">
               <li className="flex items-start gap-3">
-                <MapPin className="text-amber-400 shrink-0 mt-1" size={20} />
-                <span className="text-amber-200">
-                  Neraluwa,Akuressa,<br />
-                  Matara, Sri Lanka
-                </span>
+                <MapPin className="text-amber-500 shrink-0 mt-0.5" size={16} />
+                <span className="text-gray-400 text-sm">Neraluwa, Akuressa,<br />Matara, Sri Lanka</span>
               </li>
               <li className="flex items-center gap-3">
-                <Phone className="text-amber-400 shrink-0" size={20} />
-                <span className="text-amber-200">+94 77 08 31 741</span>
+                <Phone className="text-amber-500 shrink-0" size={16} />
+                <span className="text-gray-400 text-sm">+94 77 08 31 741</span>
               </li>
               <li className="flex items-center gap-3">
-                <Mail className="text-amber-400 shrink-0" size={20} />
-                <span className="text-amber-200">cinnamixexport@gmail.com</span>
+                <Mail className="text-amber-500 shrink-0" size={16} />
+                <span className="text-gray-400 text-sm">cinnamixexport@gmail.com</span>
               </li>
             </ul>
           </div>
 
+          {/* Newsletter */}
           <div>
-            <h4 className="text-lg font-bold mb-4">Newsletter</h4>
-            <p className="text-amber-200 mb-4">
-              Subscribe to receive updates on our latest products and special offers.
-            </p>
-            <form className="space-y-3">
+            <h4 className="text-sm font-bold uppercase tracking-widest text-gray-300 mb-4">Newsletter</h4>
+            <p className="text-gray-400 text-sm mb-4">Subscribe for product updates and special offers.</p>
+            <form className="space-y-2.5" onSubmit={e => e.preventDefault()}>
               <input
                 type="email"
                 placeholder="Your email address"
-                className="w-full px-4 py-3 rounded-lg bg-amber-800/50 border border-amber-700 text-white placeholder-amber-300 focus:outline-none focus:ring-2 focus:ring-amber-500 transition-all duration-300"
+                className="w-full px-4 py-2.5 rounded-xl bg-gray-800 border border-gray-700 text-white placeholder-gray-500 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 transition-all"
               />
-              <button
-                type="submit"
-                className="w-full bg-amber-600 hover:bg-amber-700 text-white font-semibold py-3 rounded-lg transition-all duration-300 transform hover:scale-105"
-              >
+              <button type="submit" className="w-full bg-amber-600 hover:bg-amber-700 text-white text-sm font-semibold py-2.5 rounded-xl transition-all duration-200 hover:scale-105">
                 Subscribe
               </button>
             </form>
           </div>
         </div>
 
-        <div className="border-t border-amber-800 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-amber-200 text-center md:text-left">
-              &copy; {new Date().getFullYear()} Cinnamix Export. All rights reserved.
-            </p>
-            <div className="flex gap-6 text-amber-200">
-              <a href="#" className="hover:text-white transition-colors duration-300">
-                Privacy Policy
-              </a>
-              <a href="#" className="hover:text-white transition-colors duration-300">
-                Terms of Service
-              </a>
-              <a href="#" className="hover:text-white transition-colors duration-300">
-                Sitemap
-              </a>
-            </div>
+        <div className="border-t border-gray-800 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3">
+          <p className="text-gray-500 text-xs text-center sm:text-left">
+            © {new Date().getFullYear()} Cinnamix Export. All rights reserved.
+          </p>
+          <div className="flex gap-5 text-gray-500 text-xs">
+            {['Privacy Policy', 'Terms of Service', 'Sitemap'].map(l => (
+              <a key={l} href="#" className="hover:text-amber-400 transition-colors">{l}</a>
+            ))}
           </div>
         </div>
       </div>
 
+      {/* Scroll to top */}
       <button
         onClick={scrollToTop}
-        className="fixed bottom-8 right-8 bg-amber-600 hover:bg-amber-700 text-white p-4 rounded-full shadow-2xl transition-all duration-300 transform hover:scale-110 z-40"
+        className="fixed bottom-6 right-6 w-11 h-11 bg-amber-600 hover:bg-amber-700 text-white rounded-full shadow-lg shadow-amber-900/30 flex items-center justify-center transition-all duration-200 hover:scale-110 z-40"
         aria-label="Scroll to top"
       >
-        <ArrowUp size={24} />
+        <ArrowUp size={20} />
       </button>
     </footer>
   );

@@ -62,22 +62,23 @@ const Products = () => {
   ];
 
   return (
-    <section ref={sectionRef as any} id="products" className="py-12 sm:py-16 lg:py-20 bg-white">
+    <section ref={sectionRef as any} id="products" className="py-16 sm:py-20 lg:py-28 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className={`text-center mb-12 lg:mb-16 scroll-animate ${sectionVisible ? 'visible' : ''}`}>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-amber-900 mb-4">Our Premium Products</h2>
-          <div className="w-16 sm:w-24 h-1 bg-amber-600 mx-auto mb-4 lg:mb-6"></div>
-          <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto px-4">
+        <div className={`text-center mb-14 lg:mb-20 reveal ${sectionVisible ? 'visible' : ''}`}>
+          <span className="inline-block text-xs font-bold tracking-widest text-amber-600 uppercase mb-3">Our Products</span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4">Premium <span className="text-amber-600">Cinnamon</span> Products</h2>
+          <div className="w-12 h-1 bg-amber-500 mx-auto rounded-full mb-5" />
+          <p className="text-base sm:text-lg text-gray-500 max-w-2xl mx-auto">
             Discover our carefully curated selection of Ceylon cinnamon products, each crafted to deliver
             exceptional quality and authentic flavor.
           </p>
         </div>
 
-        <div ref={gridRef as any} className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 scroll-animate ${gridVisible ? 'visible' : ''}`}>
+        <div ref={gridRef as any} className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6 reveal ${gridVisible ? 'visible' : ''}`}>
           {products.map((product, index) => (
             <div
               key={index}
-              className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden transform hover:-translate-y-1 lg:hover:-translate-y-2 hover:scale-105 cursor-pointer relative"
+              className="card-hover group bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden cursor-pointer relative"
             >
               {product.popular && (
                 <div className="absolute top-3 right-3 z-10 bg-amber-600 text-white px-3 py-1 rounded-full text-xs sm:text-sm font-semibold">

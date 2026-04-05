@@ -1,6 +1,7 @@
 import { Award, Globe, Leaf, Heart } from 'lucide-react';
-import CINNAMIX from "../assets/CINNAMIX.png";
+import CINNAMIX from '../assets/CINNAMIX.png';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
+
 const About = () => {
   const { ref: sectionRef, isVisible: sectionVisible } = useScrollAnimation();
   const { ref: storyRef, isVisible: storyVisible } = useScrollAnimation();
@@ -8,86 +9,80 @@ const About = () => {
   const { ref: valuesRef, isVisible: valuesVisible } = useScrollAnimation();
 
   const values = [
-    {
-      icon: Award,
-      title: 'Premium Quality',
-      description: 'We source only the finest Ceylon cinnamon, ensuring exceptional quality in every shipment.',
-    },
-    {
-      icon: Globe,
-      title: 'Global Reach',
-      description: 'Trusted export partner delivering to over 50 countries worldwide with reliable logistics.',
-    },
-    {
-      icon: Leaf,
-      title: 'Sustainability',
-      description: 'Committed to eco-friendly farming practices that protect our environment for future generations.',
-    },
-    {
-      icon: Heart,
-      title: 'Fair Trade',
-      description: 'Supporting local farmers with fair prices and building lasting partnerships in our communities.',
-    },
+    { icon: Award, title: 'Premium Quality', description: 'We source only the finest Ceylon cinnamon, ensuring exceptional quality in every shipment.', color: 'bg-amber-50 text-amber-600' },
+    { icon: Globe, title: 'Global Reach', description: 'Trusted export partner delivering to over 50 countries worldwide with reliable logistics.', color: 'bg-blue-50 text-blue-600' },
+    { icon: Leaf, title: 'Sustainability', description: 'Committed to eco-friendly farming practices that protect our environment for future generations.', color: 'bg-green-50 text-green-600' },
+    { icon: Heart, title: 'Fair Trade', description: 'Supporting local farmers with fair prices and building lasting partnerships in our communities.', color: 'bg-rose-50 text-rose-600' },
   ];
 
   return (
-    <section ref={sectionRef as any} id="about" className="py-12 sm:py-16 lg:py-20 bg-gradient-to-b from-amber-50 to-white">
+    <section ref={sectionRef as any} id="about" className="py-16 sm:py-20 lg:py-28 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className={`text-center mb-12 lg:mb-16 scroll-animate ${sectionVisible ? 'visible' : ''}`}>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-amber-900 mb-4">About Cinnamix Export</h2>
-          <div className="w-16 sm:w-24 h-1 bg-amber-600 mx-auto mb-4 lg:mb-6"></div>
-          <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto px-4">
-            With over two decades of expertise in the cinnamon industry, we've built our reputation on quality,
-            reliability, and authentic Ceylon cinnamon that captures the true essence of this precious spice.
+
+        {/* Section header */}
+        <div className={`text-center mb-14 lg:mb-20 reveal ${sectionVisible ? 'visible' : ''}`}>
+          <span className="inline-block text-xs font-bold tracking-widest text-amber-600 uppercase mb-3">Our Story</span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4">
+            About <span className="text-amber-600">Cinnamix Export</span>
+          </h2>
+          <div className="w-12 h-1 bg-amber-500 mx-auto rounded-full mb-5" />
+          <p className="text-base sm:text-lg text-gray-500 max-w-2xl mx-auto">
+            With over two decades of expertise, we've built our reputation on quality, reliability,
+            and authentic Ceylon cinnamon that captures the true essence of this precious spice.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-12 lg:mb-16">
-          <div ref={storyRef as any} className={`space-y-4 lg:space-y-6 scroll-animate-left ${storyVisible ? 'visible' : ''}`}>
-            <h3 className="text-2xl sm:text-3xl font-bold text-amber-900">Our Story</h3>
-            <p className="text-gray-700 leading-relaxed text-sm sm:text-base">
-              Founded in 2025, Cinnamix Export began as a small family business with a passion for sharing
-              the world's finest cinnamon. Today, we're proud to be one of the leading exporters of premium
-              Ceylon cinnamon, trusted by wholesalers, retailers, and food manufacturers globally.
-            </p>
-            <p className="text-gray-700 leading-relaxed text-sm sm:text-base">
-              Our journey started in the lush cinnamon plantations of Sri Lanka, where we learned the art
-              of selecting and processing the highest quality cinnamon. We work directly with experienced
-              farmers who have perfected their craft over generations, ensuring every stick, powder, and
-              oil meets our exacting standards.
-            </p>
-            <p className="text-gray-700 leading-relaxed text-sm sm:text-base">
-              What sets us apart is our unwavering commitment to authenticity. True Ceylon cinnamon is not
-              just a spice—it's a tradition, a heritage, and a symbol of quality that we're honored to share
-              with the world.
-            </p>
+        {/* Story + image */}
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center mb-16 lg:mb-24">
+          <div className={`space-y-5 reveal-left ${storyVisible ? 'visible' : ''}`} ref={storyRef as any}>
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-gray-900">
+              From Sri Lanka's Plantations<br />
+              <span className="text-amber-600">to Your Doorstep</span>
+            </h3>
+            {[
+              'Founded in 2025, Cinnamix Export began as a small family business with a passion for sharing the world\'s finest cinnamon. Today, we\'re proud to be one of the leading exporters of premium Ceylon cinnamon, trusted by wholesalers, retailers, and food manufacturers globally.',
+              'Our journey started in the lush cinnamon plantations of Sri Lanka, where we learned the art of selecting and processing the highest quality cinnamon. We work directly with experienced farmers who have perfected their craft over generations.',
+              'What sets us apart is our unwavering commitment to authenticity. True Ceylon cinnamon is not just a spice — it\'s a tradition, a heritage, and a symbol of quality that we\'re honored to share with the world.',
+            ].map((text, i) => (
+              <p key={i} className="text-gray-500 leading-relaxed text-sm sm:text-base">{text}</p>
+            ))}
+
+            <div className="flex flex-wrap gap-4 pt-2">
+              {[['20+', 'Years Experience'], ['500+', 'Happy Clients'], ['50+', 'Countries']].map(([val, label]) => (
+                <div key={label} className="bg-amber-50 rounded-2xl px-5 py-3 text-center">
+                  <p className="text-2xl font-extrabold text-amber-600">{val}</p>
+                  <p className="text-xs text-gray-500 mt-0.5">{label}</p>
+                </div>
+              ))}
+            </div>
           </div>
 
-          <div ref={imageRef as any} className={`relative mt-8 lg:mt-0 scroll-animate-right ${imageVisible ? 'visible' : ''}`}>
-            <div className="aspect-square rounded-2xl overflow-hidden shadow-2xl transform hover:scale-105 lg:hover:scale-110 hover:rotate-1 transition-all duration-500 cursor-pointer">
-              <img
-                src={CINNAMIX}
-                alt="Cinnamon plantation"
-                className="w-full h-full object-cover"
-              />
+          <div className={`relative reveal-right ${imageVisible ? 'visible' : ''}`} ref={imageRef as any}>
+            <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-amber-100">
+              <img src={CINNAMIX} alt="Cinnamon plantation" className="w-full h-72 sm:h-80 lg:h-[420px] object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-amber-900/30 to-transparent" />
             </div>
-            <div className="absolute -bottom-4 -right-4 lg:-bottom-6 lg:-right-6 w-32 h-32 lg:w-48 lg:h-48 bg-amber-600 rounded-2xl -z-10"></div>
+            {/* Decorative accent */}
+            <div className="absolute -bottom-5 -right-5 w-40 h-40 bg-amber-100 rounded-3xl -z-10" />
+            <div className="absolute -top-5 -left-5 w-24 h-24 bg-orange-100 rounded-2xl -z-10" />
           </div>
         </div>
 
-        <div ref={valuesRef as any} className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 scroll-animate ${valuesVisible ? 'visible' : ''}`}>
-          {values.map((value, index) => {
-            const Icon = value.icon;
+        {/* Values grid */}
+        <div ref={valuesRef as any} className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6 reveal ${valuesVisible ? 'visible' : ''}`}>
+          {values.map((v, i) => {
+            const Icon = v.icon;
             return (
               <div
-                key={index}
-                className="bg-white p-6 lg:p-8 rounded-xl shadow-lg hover:shadow-2xl hover-lift border-t-4 border-amber-600 cursor-pointer transition-all duration-300"
+                key={i}
+                className="card-hover bg-white border border-gray-100 rounded-2xl p-6 shadow-sm cursor-pointer"
+                style={{ transitionDelay: `${i * 0.1}s` }}
               >
-                <div className="bg-amber-100 w-12 h-12 lg:w-16 lg:h-16 rounded-full flex items-center justify-center mb-4 lg:mb-6">
-                  <Icon className="text-amber-700" size={24} />
+                <div className={`w-12 h-12 rounded-xl ${v.color} flex items-center justify-center mb-4`}>
+                  <Icon size={22} />
                 </div>
-                <h4 className="text-lg lg:text-xl font-bold text-gray-900 mb-2 lg:mb-3">{value.title}</h4>
-                <p className="text-gray-600 leading-relaxed text-sm lg:text-base">{value.description}</p>
+                <h4 className="text-base font-bold text-gray-900 mb-2">{v.title}</h4>
+                <p className="text-sm text-gray-500 leading-relaxed">{v.description}</p>
               </div>
             );
           })}
