@@ -62,13 +62,14 @@ const Products = () => {
   ];
 
   return (
-    <section ref={sectionRef as any} id="products" className="py-16 sm:py-20 lg:py-28 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section ref={sectionRef as any} id="products" className="py-16 sm:py-20 lg:py-28">
+      <div className="section-divider" />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 lg:pt-28">
         <div className={`text-center mb-14 lg:mb-20 reveal ${sectionVisible ? 'visible' : ''}`}>
-          <span className="inline-block text-xs font-bold tracking-widest text-amber-600 uppercase mb-3">Our Products</span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4">Premium <span className="text-amber-600">Cinnamon</span> Products</h2>
-          <div className="w-12 h-1 bg-amber-500 mx-auto rounded-full mb-5" />
-          <p className="text-base sm:text-lg text-gray-500 max-w-2xl mx-auto">
+          <span className="inline-block text-xs font-bold tracking-widest text-amber-400/70 uppercase mb-3">Our Products</span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white mb-4">Premium <span className="shimmer-text">Cinnamon</span> Products</h2>
+          <div className="w-12 h-px bg-linear-to-r from-transparent via-amber-500 to-transparent mx-auto mb-5" />
+          <p className="text-sm sm:text-base text-white/50 max-w-2xl mx-auto">
             Discover our carefully curated selection of Ceylon cinnamon products, each crafted to deliver
             exceptional quality and authentic flavor.
           </p>
@@ -78,10 +79,10 @@ const Products = () => {
           {products.map((product, index) => (
             <div
               key={index}
-              className="card-hover group bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden cursor-pointer relative"
+              className="card-hover group glass rounded-2xl border border-amber-500/10 hover:border-amber-500/25 overflow-hidden cursor-pointer relative"
             >
               {product.popular && (
-                <div className="absolute top-3 right-3 z-10 bg-amber-600 text-white px-3 py-1 rounded-full text-xs sm:text-sm font-semibold">
+                <div className="absolute top-3 right-3 z-10 bg-amber-500/80 backdrop-blur-sm text-white px-3 py-1 rounded-full text-xs font-bold">
                   Popular
                 </div>
               )}
@@ -95,21 +96,19 @@ const Products = () => {
                 <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
 
-              <div className="p-4 sm:p-6">
-                <div className="flex items-center mb-2 sm:mb-3">
+              <div className="p-4 sm:p-5">
+                <div className="flex items-center mb-2">
                   {[...Array(product.rating)].map((_, i) => (
-                    <Star key={i} className="text-amber-500 fill-amber-500" size={14} />
+                    <Star key={i} className="text-amber-400 fill-amber-400" size={12} />
                   ))}
                 </div>
-
-                <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">{product.name}</h3>
-                <p className="text-gray-600 mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base">{product.description}</p>
-
-                <button 
+                <h3 className="text-sm sm:text-base font-bold text-white mb-2">{product.name}</h3>
+                <p className="text-white/40 mb-4 leading-relaxed text-xs sm:text-sm">{product.description}</p>
+                <button
                   onClick={() => handleInquireClick(product.name)}
-                  className="w-full bg-amber-600 hover:bg-amber-700 text-white font-semibold py-2.5 sm:py-3 rounded-lg transition-colors duration-300 flex items-center justify-center group text-sm sm:text-base"
+                  className="w-full bg-amber-500/80 hover:bg-amber-500 text-white font-bold py-2.5 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 text-xs sm:text-sm hover:scale-105"
                 >
-                  <ShoppingCart className="mr-2 group-hover:scale-110 transition-transform" size={18} />
+                  <ShoppingCart size={15} />
                   Inquire Now
                 </button>
               </div>

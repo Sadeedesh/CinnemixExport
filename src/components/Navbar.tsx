@@ -41,31 +41,24 @@ const Navbar = () => {
   return (
     <>
       <nav className={`fixed w-full z-50 transition-all duration-500 ${
-        scrolled
-          ? 'bg-white/95 backdrop-blur-xl shadow-lg shadow-amber-900/5 border-b border-amber-100/60'
-          : 'bg-white/70 backdrop-blur-md'
+        scrolled ? 'glass-dark shadow-lg shadow-black/30 border-b border-amber-500/10' : 'bg-transparent'
       }`}>
-
         {/* Top accent line */}
-        <div className="h-0.5 w-full bg-linear-to-r from-amber-400 via-orange-500 to-amber-400" />
+        <div className="h-px w-full bg-linear-to-r from-transparent via-amber-500/50 to-transparent" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16 lg:h-[70px]">
 
             {/* Logo */}
-            <button
-              onClick={() => scrollToSection('home')}
-              className="flex items-center gap-3 shrink-0 group"
-            >
-              {/* Animated logo icon */}
+            <button onClick={() => scrollToSection('home')} className="flex items-center gap-3 shrink-0 group">
               <div className="relative w-9 h-9">
-                <div className="absolute inset-0 rounded-xl bg-linear-to-br from-amber-500 to-orange-600 shadow-md shadow-amber-300 group-hover:shadow-amber-400 transition-shadow duration-300" />
-                <div className="absolute inset-0 rounded-xl bg-linear-to-br from-amber-500 to-orange-600 opacity-0 group-hover:opacity-100 scale-110 blur-sm transition-all duration-300" />
+                <div className="absolute inset-0 rounded-xl bg-linear-to-br from-amber-500 to-orange-600 shadow-lg shadow-amber-900/50 group-hover:shadow-amber-500/40 transition-shadow duration-300" />
+                <div className="absolute inset-0 rounded-xl bg-linear-to-br from-amber-400 to-orange-500 opacity-0 group-hover:opacity-100 blur-sm transition-all duration-300" />
                 <span className="relative z-10 flex items-center justify-center w-full h-full text-white font-black text-base">C</span>
               </div>
               <div className="flex flex-col leading-none">
-                <span className="text-base font-black text-gray-900 tracking-tight">Cinnamix</span>
-                <span className="text-[10px] font-semibold text-amber-600 tracking-widest uppercase">Export</span>
+                <span className="text-base font-black text-white tracking-tight">Cinnamix</span>
+                <span className="text-[10px] font-bold text-amber-400 tracking-widest uppercase">Export</span>
               </div>
             </button>
 
@@ -76,81 +69,70 @@ const Navbar = () => {
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
                   className={`relative px-4 py-2 text-sm font-medium rounded-lg transition-all duration-300 group ${
-                    activeSection === item.id
-                      ? 'text-amber-700'
-                      : 'text-gray-500 hover:text-gray-900'
+                    activeSection === item.id ? 'text-amber-400' : 'text-white/60 hover:text-white'
                   }`}
                 >
-                  {/* Hover/active background pill */}
                   <span className={`absolute inset-0 rounded-lg transition-all duration-300 ${
-                    activeSection === item.id
-                      ? 'bg-amber-50'
-                      : 'bg-transparent group-hover:bg-gray-50'
+                    activeSection === item.id ? 'bg-amber-500/10 border border-amber-500/20' : 'bg-transparent group-hover:bg-white/5'
                   }`} />
-
                   <span className="relative z-10">{item.label}</span>
-
-                  {/* Animated underline */}
-                  <span className={`absolute bottom-1 left-1/2 -translate-x-1/2 h-0.5 rounded-full bg-linear-to-r from-amber-500 to-orange-500 transition-all duration-300 ${
+                  <span className={`absolute bottom-1 left-1/2 -translate-x-1/2 h-px rounded-full bg-linear-to-r from-amber-400 to-orange-400 transition-all duration-300 ${
                     activeSection === item.id ? 'w-5' : 'w-0 group-hover:w-3'
                   }`} />
                 </button>
               ))}
             </div>
 
-            {/* Right side — CTA + hamburger */}
+            {/* CTA + hamburger */}
             <div className="flex items-center gap-3">
-              {/* CTA button — desktop */}
               <button
                 onClick={() => scrollToSection('contact')}
-                className="hidden md:flex items-center gap-2 px-5 py-2 rounded-full text-sm font-bold text-white bg-linear-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 shadow-md shadow-amber-200 hover:shadow-amber-300 transition-all duration-300 hover:scale-105 active:scale-95"
+                className="hidden md:flex items-center gap-2 px-5 py-2 rounded-full text-sm font-bold text-white bg-linear-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 glow-amber transition-all duration-300 hover:scale-105 active:scale-95"
               >
                 Get Quote
-                <span className="w-1.5 h-1.5 rounded-full bg-white/70 animate-pulse" />
+                <span className="w-1.5 h-1.5 rounded-full bg-white/60 animate-pulse" />
               </button>
 
-              {/* Hamburger — mobile */}
               <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="md:hidden relative w-9 h-9 flex flex-col items-center justify-center gap-1.5 rounded-lg hover:bg-amber-50 transition-colors"
+                className="md:hidden relative w-9 h-9 flex flex-col items-center justify-center gap-1.5 rounded-lg hover:bg-white/10 transition-colors"
                 aria-label={isOpen ? 'Close menu' : 'Open menu'}
                 title={isOpen ? 'Close menu' : 'Open menu'}
               >
-                <span className={`block w-5 h-0.5 bg-gray-700 rounded-full transition-all duration-300 ${isOpen ? 'rotate-45 translate-y-2' : ''}`} />
-                <span className={`block w-5 h-0.5 bg-gray-700 rounded-full transition-all duration-300 ${isOpen ? 'opacity-0 scale-x-0' : ''}`} />
-                <span className={`block w-5 h-0.5 bg-gray-700 rounded-full transition-all duration-300 ${isOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+                <span className={`block w-5 h-px bg-white rounded-full transition-all duration-300 ${isOpen ? 'rotate-45 translate-y-[7px]' : ''}`} />
+                <span className={`block w-5 h-px bg-white rounded-full transition-all duration-300 ${isOpen ? 'opacity-0 scale-x-0' : ''}`} />
+                <span className={`block w-5 h-px bg-white rounded-full transition-all duration-300 ${isOpen ? '-rotate-45 -translate-y-[7px]' : ''}`} />
               </button>
             </div>
           </div>
         </div>
       </nav>
 
-      {/* Mobile drawer overlay */}
+      {/* Overlay */}
       <div
-        className={`fixed inset-0 z-40 bg-black/30 backdrop-blur-sm transition-opacity duration-300 md:hidden ${
+        className={`fixed inset-0 z-40 bg-black/60 backdrop-blur-sm transition-opacity duration-300 md:hidden ${
           isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
         onClick={() => setIsOpen(false)}
       />
 
-      {/* Mobile drawer */}
-      <div className={`fixed top-0 right-0 z-50 h-full w-72 bg-white shadow-2xl transition-transform duration-400 ease-in-out md:hidden flex flex-col ${
+      {/* Drawer */}
+      <div className={`fixed top-0 right-0 z-50 h-full w-72 shadow-2xl transition-transform duration-300 ease-in-out md:hidden flex flex-col glass-dark border-l border-amber-500/10 ${
         isOpen ? 'translate-x-0' : 'translate-x-full'
       }`}>
-        {/* Drawer header */}
-        <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100">
+        <div className="flex items-center justify-between px-5 py-4 border-b border-amber-500/10">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-xl bg-linear-to-br from-amber-500 to-orange-600 flex items-center justify-center shadow-sm">
+            <div className="w-8 h-8 rounded-xl bg-linear-to-br from-amber-500 to-orange-600 flex items-center justify-center">
               <span className="text-white font-black text-sm">C</span>
             </div>
             <div className="flex flex-col leading-none">
-              <span className="text-sm font-black text-gray-900">Cinnamix</span>
-              <span className="text-[9px] font-semibold text-amber-600 tracking-widest uppercase">Export</span>
+              <span className="text-sm font-black text-white">Cinnamix</span>
+              <span className="text-[9px] font-bold text-amber-400 tracking-widest uppercase">Export</span>
             </div>
           </div>
           <button
             onClick={() => setIsOpen(false)}
-            className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-gray-100 transition-colors text-gray-500"
+            className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white/10 transition-colors text-white/60"
             aria-label="Close menu"
             title="Close menu"
           >
@@ -158,7 +140,6 @@ const Navbar = () => {
           </button>
         </div>
 
-        {/* Drawer nav items */}
         <div className="flex-1 overflow-y-auto px-4 py-4 space-y-1">
           {navItems.map((item, i) => (
             <button
@@ -166,27 +147,24 @@ const Navbar = () => {
               onClick={() => scrollToSection(item.id)}
               className={`drawer-item drawer-delay-${i} w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium ${
                 activeSection === item.id
-                  ? 'bg-linear-to-r from-amber-50 to-orange-50 text-amber-700 border border-amber-100'
-                  : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                  ? 'glass-amber text-amber-300 border border-amber-500/20'
+                  : 'text-white/60 hover:bg-white/5 hover:text-white'
               }`}
             >
-              {activeSection === item.id && (
-                <span className="w-1.5 h-1.5 rounded-full bg-amber-500 shrink-0" />
-              )}
+              {activeSection === item.id && <span className="w-1.5 h-1.5 rounded-full bg-amber-400 shrink-0" />}
               {item.label}
             </button>
           ))}
         </div>
 
-        {/* Drawer footer CTA */}
-        <div className="px-4 py-5 border-t border-gray-100">
+        <div className="px-4 py-5 border-t border-amber-500/10">
           <button
             onClick={() => scrollToSection('contact')}
-            className="w-full py-3 rounded-xl text-sm font-bold text-white bg-linear-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 shadow-md shadow-amber-200 transition-all duration-200 hover:scale-105 active:scale-95"
+            className="w-full py-3 rounded-xl text-sm font-bold text-white bg-linear-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 transition-all duration-200 hover:scale-105"
           >
             Get a Quote
           </button>
-          <p className="text-center text-xs text-gray-400 mt-3">© 2025 Cinnamix Export</p>
+          <p className="text-center text-xs text-white/20 mt-3">© 2025 Cinnamix Export</p>
         </div>
       </div>
     </>
